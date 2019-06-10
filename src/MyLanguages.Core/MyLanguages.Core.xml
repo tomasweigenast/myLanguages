@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyLanguages.Core</name>
+    </assembly>
+    <members>
+        <member name="T:MyLanguages.Core.Decoder.EmbbededLanguageDecoder">
+            <summary>
+            Decodes languages from embbeded files in the assembly
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.EmbbededLanguageDecoder.Decode">
+            <summary>
+            Decodes the languages
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Decoder.ILanguageDecoder">
+            <summary>
+            A base class that acts a language decoder
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.ILanguageDecoder.Decode">
+            <summary>
+            Gets the languages from the decoder
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Decoder.PhysicalFileDecoder">
+            <summary>
+            Decodes languages from a physical directory in the machine
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:MyLanguages.Core.Decoder.PhysicalFileDecoder"/>
+            </summary>
+            <param name="path">The directory where to look for language files</param>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.Decode">
+            <summary>
+            Decodes the languages
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Engine.LocalizationEngine">
+            <summary>
+            Localization engine used to add new languages, get values, etc
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.Instance">
+            <summary>
+            A single instance of the <see cref="T:MyLanguages.Core.Engine.LocalizationEngine"/>
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.#cctor">
+            <summary>
+            Makes sure its truly lazy
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.#ctor">
+            <summary>
+            Prevent instantiation outside
+            </summary>
+        </member>
+        <member name="E:MyLanguages.Core.Engine.LocalizationEngine.PropertyChanged">
+            <summary>
+            Event raised when a property changes its value
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.OnPropertyChanged(System.String)">
+            <summary>
+            Method to be executed when a property changes
+            </summary>
+            <param name="propertyName">The name of the property to alert of his change</param>
+        </member>
+        <member name="F:MyLanguages.Core.Engine.LocalizationEngine.LANG_FILE_EXTENSION">
+            <summary>
+            The default extension for any language file
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.CurrentLanguage">
+            <summary>
+            The current language of the application
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.Localizator">
+            <summary>
+            Used to get localization entries
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.MakeNew">
+            <summary>
+            Initialize the <see cref="T:MyLanguages.Core.Engine.LocalizationEngine"/> and returns an unique instance
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.DetectLanguages(System.String)">
+            <summary>
+            Loads the localization engine and install all the detected languages in the assembly.
+            Returns the amount of loaded languages
+            </summary>
+            <param name="defaultLanguage">The default language to use. If its null, the system language will be used.</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.ChangeLanguage(System.String)">
+            <summary>
+            Changes the current language of the application
+            </summary>
+            <param name="languageCode">The new language</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.GetInstalledLanguages">
+            <summary>
+            Returns a readonly list containing all the installed languages
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Engine.Localize">
+            <summary>
+            Used to retrieve localization values
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.Localize.Item(System.String,System.String)">
+            <summary>
+            Gets a value from a key
+            </summary>
+            <param name="key">The key to get its value</param>
+            <param name="defaultValue">A default value when key is not found</param>
+        </member>
+        <member name="T:MyLanguages.Core.Exceptions.LanguageNotFoundException">
+            <summary>
+            Exception thrown when is trying to add a language that does not exists
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Exceptions.LanguageNotFoundException.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:MyLanguages.Core.Exceptions.LanguageNotFoundException"/> with an error message
+            </summary>
+            <param name="message">The error message</param>
+        </member>
+        <member name="T:MyLanguages.Core.Extensions.StreamExtensions">
+            <summary>
+            Extension methods to work with <see cref="T:System.IO.Stream"/>
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Extensions.StreamExtensions.ReadAllLines(System.IO.Stream)">
+            <summary>
+            Reads all lines from a <see cref="T:System.IO.Stream"/>
+            </summary>
+            <param name="stream">The stream that contains the lines to read</param>
+        </member>
+        <member name="T:MyLanguages.Core.Localization.Language">
+            <summary>
+            Represents an installed language
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Localization.Language.Code">
+            <summary>
+            The language's code
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Localization.Language.UniversalCode">
+            <summary>
+            Represents the TwoLetterISOLanguageName of the language
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Localization.Language.SubCulture">
+            <summary>
+            Represents the subculture of the language. 
+            For example, in the culture: es-AR, the subculture is AR
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Localization.Language.ResourceName">
+            <summary>
+            The name of the resource where the language is
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Localization.Language.IsUniversal">
+            <summary>
+            Indicates if the language is a universal language, without sublanguages
+            For example: Español = es
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.Language.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:MyLanguages.Core.Localization.Language"/>
+            </summary>
+            <param name="code">The code name of the language</param>
+            <param name="resourceName">The resource location</param>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.Language.GetCulture">
+            <summary>
+            Returns the <see cref="T:System.Globalization.CultureInfo"/> that represents the current language
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.Language.ToString">
+            <summary>
+            Returns the native name of the language
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Localization.LanguageManager">
+            <summary>
+            Provides methods to work with Languages
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.LoadFromAssemblyDetection">
+            <summary>
+            Searchs language files in embbeded files of the assembly
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.AddLanguage(System.String,System.String)">
+            <summary>
+            Adds a new language
+            </summary>
+            <param name="languageCode">The code of the language</param>
+            <param name="resource">The resource name of the language file</param>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.GetCurrentLanguage">
+            <summary>
+            Returns the current language of the application
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.GetLanguage(System.String)">
+            <summary>
+            Gets a language based on its code.
+            </summary>
+            <remarks>
+            If the code represents a language with Code and Subculture
+            tries to find the same language, otherwise, its going to search a language with the same Universal culture.
+            </remarks>
+            <param name="languageCode">The code to get its language</param>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.SetLanguage(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Sets the new language
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.GetValue(System.String,System.String)">
+            <summary>
+            Gets a value based on a key
+            </summary>
+            <param name="key">The key</param>
+            <param name="defaultValue">The default value when key is not found</param>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.GetLangs">
+            <summary>
+            Gets all languages
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.0</Version>
+    <Authors>Tomas Wegenast</Authors>
+    <Product>myLanguages</Product>
+    <Description>Cross-platform library that converts your single-language projects into multi-language projects</Description>
+    <Copyright>Copyright ©2019 - Tomas Wegenast</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Tomi-15/myLanguages</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Tomi-15/myLanguages</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DocumentationFile>E:\Bitture\Software\Repositories\myLanguages\src\MyLanguages.Core\MyLanguages.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\Bitture\Software\Repositories\myLanguages\builds\core\netstandard2.0\MyLanguages.Core.xml</DocumentationFile>
+    <OutputPath>E:\Bitture\Software\Repositories\myLanguages\builds\core</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
