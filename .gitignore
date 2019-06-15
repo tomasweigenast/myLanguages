@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /builds/core/netstandard2.0
 /builds/wpf
+/builds/core/Publish Nuget Package.bat
