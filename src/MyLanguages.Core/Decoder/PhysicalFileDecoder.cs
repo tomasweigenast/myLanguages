@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace MyLanguages.Core.Decoder
 {
@@ -12,9 +13,12 @@ namespace MyLanguages.Core.Decoder
     /// </summary>
     public class PhysicalFileDecoder : ILanguageDecoder
     {
-        #region Private Members
+        #region Public Properties
 
-        private string mPath; // The directory path
+        /// <summary>
+        /// The directory where the decoder will work
+        /// </summary>
+        public string Path { get; }
 
         #endregion
 
@@ -39,7 +43,7 @@ namespace MyLanguages.Core.Decoder
                     throw new DirectoryNotFoundException($"Directory at '{path}' not found.");
 
                 // Set path
-                mPath = path;
+                Path = path;
             }
             catch
             {
@@ -57,7 +61,7 @@ namespace MyLanguages.Core.Decoder
         public Language[] Decode()
         {
             // Get files from the directory
-            string[] langFiles = Directory.GetFiles(mPath, $"*.{LocalizationEngine.LANG_FILE_EXTENSION}", SearchOption.TopDirectoryOnly);
+            string[] langFiles = Directory.GetFiles(Path, $"*{LocalizationEngine.LANG_FILE_EXTENSION}", SearchOption.TopDirectoryOnly);
 
             // List to store langs
             IList<Language> langs = new List<Language>();
@@ -68,7 +72,7 @@ namespace MyLanguages.Core.Decoder
                 FileInfo fi = new FileInfo(langFile);
 
                 // Get language name
-                var langName = Path.GetFileNameWithoutExtension(fi.Name); 
+                var langName = System.IO.Path.GetFileNameWithoutExtension(fi.Name); 
 
                 // Add lang
                 langs.Add(new Language(langName, langFile));
@@ -77,6 +81,19 @@ namespace MyLanguages.Core.Decoder
             // Return langs
             return langs.ToArray();
         }
+
+        /// <summary>
+        /// Returns a boolean indicating if the language file exists
+        /// </summary>
+        /// <param name="language">The language to get its file</param>
+        public bool LanguageFileExists(Language language)
+            => Directory.GetFiles(Path, $"{language.Code}{LocalizationEngine.LANG_FILE_EXTENSION}").Any();
+
+        /// <summary>
+        /// Returns the corresponding stream for the decoder
+        /// </summary>
+        public StreamReader GetStream(Language language)
+            => new StreamReader(language.Location, Encoding.UTF8);
 
         #endregion
     }

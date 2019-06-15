@@ -1,10 +1,11 @@
-﻿using MyLanguages.Core.Exceptions;
+﻿using MyLanguages.Core.Decoder;
+using MyLanguages.Core.Engine;
+using MyLanguages.Core.Exceptions;
 using MyLanguages.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
 
 namespace MyLanguages.Core.Localization
 {
@@ -26,45 +27,50 @@ namespace MyLanguages.Core.Localization
         /// <summary>
         /// Searchs language files in embbeded files of the assembly
         /// </summary>
-        public static void LoadFromAssemblyDetection()
+        public static void LoadLanguages(ILanguageDecoder decoder)
         {
-            // Get languages resource
-            var resources = Assembly.GetEntryAssembly().GetManifestResourceNames().Where(x => x.EndsWith(".lang")).ToArray();
-
-            foreach (var resource in resources)
+            // Foreach decoded language
+            foreach (var lang in decoder.Decode())
             {
-                // Get language name
-                var resourceSplit = resource.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-                var langName = resourceSplit[resourceSplit.Length - 2];
+                // If the language is duplicated, skip
+                if (mLanguages.Any(x => x.Code == lang.Code))
+                    continue;
 
-                // Add the language
-                AddLanguage(langName, resource);
+                // Add it
+                mLanguages.Add(lang);
             }
-        }
-
-        /// <summary>
-        /// Adds a new language
-        /// </summary>
-        /// <param name="languageCode">The code of the language</param>
-        /// <param name="resource">The resource name of the language file</param>
-        public static bool AddLanguage(string languageCode, string resource)
-        {
-            // Duplicated language
-            if (mLanguages.Any(x => x.Code == languageCode))
-                return false;
-
-            // Create language
-            Language lang = new Language(languageCode, resource);
-
-            // Add language
-            mLanguages.Add(lang);
-            return true;
         }
 
         /// <summary>
         /// Returns the current language of the application
         /// </summary>
         public static Language GetCurrentLanguage() => mCurrentLanguage;
+
+        /// <summary>
+        /// Loads a language in a reduced environment
+        /// </summary>
+        public static Dictionary<string, string> LoadLanguageEntries(string langName, ILanguageDecoder decoder)
+        {
+            // Get lang
+            var lang = decoder.Decode().FirstOrDefault(x => x.Code == langName);
+
+            // If null, throw exception
+            if (lang == null)
+                throw new Exception("Language not found");
+
+            Dictionary<string, string> entries = new Dictionary<string, string>();
+
+            // Parse lines
+            foreach (var line in decoder.GetStream(lang).ReadAllLines())
+            {
+                string[] split = line.Split('=');
+                string key = split[0]; // Get the key
+                string value = split[1].Remove(0, 1).Remove(split[1].Length - 2); // Get the value
+                entries.Add(key, value); // Add entry
+            }
+
+            return entries;
+        }
 
         /// <summary>
         /// Gets a language based on its code.
@@ -121,21 +127,32 @@ namespace MyLanguages.Core.Localization
             // Clear old entries
             mEntries.Clear();
 
-            // Get entry assembly
-            Assembly entry = Assembly.GetEntryAssembly();
-
             // Check if the language resource exists
-            if (!entry.GetManifestResourceNames().Any(x => x == language.Location))
+            if(!LocalizationEngine.Instance.Decoder.LanguageFileExists(language))
                 throw new LanguageNotFoundException("Language file not found.");
 
             // Parse lines
-            foreach (var line in entry.GetManifestResourceStream(language.Location).ReadAllLines())
+            foreach (var line in LocalizationEngine.Instance.Decoder.GetStream(language).ReadAllLines())
             {
                 string[] split = line.Split('=');
                 string key = split[0]; // Get the key
                 string value = split[1].Remove(0, 1).Remove(split[1].Length - 2); // Get the value
                 mEntries.Add(key, value); // Add entry
             }
+        }
+
+        /// <summary>
+        /// Adds a new language to the system
+        /// </summary>
+        /// <param name="language">The language to add</param>
+        public static void AddLanguage(Language language)
+        {
+            // Language duplicated
+            if (mLanguages.Contains(language))
+                throw new ArgumentException("This language is already added.", nameof(language));
+
+            // Add the language
+            mLanguages.Add(language);
         }
 
         /// <summary>
@@ -166,9 +183,26 @@ namespace MyLanguages.Core.Localization
         }
 
         /// <summary>
+        /// Indicates if an entry exists
+        /// </summary>
+        public static bool EntryExists(string key)
+        {
+            if (mCurrentLanguage == null)
+                return false;
+
+            if (mEntries.Count <= 0)
+                return false;
+
+            if (!mEntries.ContainsKey(key))
+                return false;
+
+            return true;
+        }
+
+        /// <summary>
         /// Gets all languages
         /// </summary>
-        public static IReadOnlyList<Language> GetLangs() => new ReadOnlyCollection<Language>(mLanguages);
+        public static Language[] GetLangs() => mLanguages.ToArray();
 
         #endregion
     }

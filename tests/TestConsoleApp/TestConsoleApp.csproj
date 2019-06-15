@@ -6,16 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="langs\en-US.lang" />
-    <None Remove="langs\es-ES.lang" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="langs\en-US.lang" />
-    <EmbeddedResource Include="langs\es-ES.lang" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\MyLanguages.Core\MyLanguages.Core.csproj" />
   </ItemGroup>
 

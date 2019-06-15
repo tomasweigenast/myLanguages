@@ -14,6 +14,17 @@
             Decodes the languages
             </summary>
         </member>
+        <member name="M:MyLanguages.Core.Decoder.EmbbededLanguageDecoder.LanguageFileExists(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns a boolean indicating if the language file exists
+            </summary>
+            <param name="language">The language to get its file</param>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.EmbbededLanguageDecoder.GetStream(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns the corresponding stream for the decoder
+            </summary>
+        </member>
         <member name="T:MyLanguages.Core.Decoder.ILanguageDecoder">
             <summary>
             A base class that acts a language decoder
@@ -24,9 +35,24 @@
             Gets the languages from the decoder
             </summary>
         </member>
+        <member name="M:MyLanguages.Core.Decoder.ILanguageDecoder.LanguageFileExists(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns a boolean indicating if the language file exists
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.ILanguageDecoder.GetStream(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns the corresponding stream for the decoder
+            </summary>
+        </member>
         <member name="T:MyLanguages.Core.Decoder.PhysicalFileDecoder">
             <summary>
             Decodes languages from a physical directory in the machine
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Decoder.PhysicalFileDecoder.Path">
+            <summary>
+            The directory where the decoder will work
             </summary>
         </member>
         <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.#ctor(System.String)">
@@ -38,6 +64,33 @@
         <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.Decode">
             <summary>
             Decodes the languages
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.LanguageFileExists(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns a boolean indicating if the language file exists
+            </summary>
+            <param name="language">The language to get its file</param>
+        </member>
+        <member name="M:MyLanguages.Core.Decoder.PhysicalFileDecoder.GetStream(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Returns the corresponding stream for the decoder
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Engine.LocalizationDebuggerEngine">
+            <summary>
+            Represents a localization engine used to debug
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationDebuggerEngine.#ctor(MyLanguages.Core.Decoder.ILanguageDecoder)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="decoder">The decoder used to get languages</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationDebuggerEngine.GetValue(System.String,System.String)">
+            <summary>
+            Gets a string value
             </summary>
         </member>
         <member name="T:MyLanguages.Core.Engine.LocalizationEngine">
@@ -55,14 +108,24 @@
             Makes sure its truly lazy
             </summary>
         </member>
-        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.#ctor">
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.#ctor(MyLanguages.Core.Decoder.ILanguageDecoder)">
             <summary>
             Prevent instantiation outside
+            </summary>
+        </member>
+        <member name="T:MyLanguages.Core.Engine.LocalizationEngine.LanguageChangedHandler">
+            <summary>
+            Language changed event handler
             </summary>
         </member>
         <member name="E:MyLanguages.Core.Engine.LocalizationEngine.PropertyChanged">
             <summary>
             Event raised when a property changes its value
+            </summary>
+        </member>
+        <member name="E:MyLanguages.Core.Engine.LocalizationEngine.LanguageChanged">
+            <summary>
+            Event raised when the current language of the application changes
             </summary>
         </member>
         <member name="M:MyLanguages.Core.Engine.LocalizationEngine.OnPropertyChanged(System.String)">
@@ -76,20 +139,31 @@
             The default extension for any language file
             </summary>
         </member>
-        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.CurrentLanguage">
-            <summary>
-            The current language of the application
-            </summary>
-        </member>
         <member name="P:MyLanguages.Core.Engine.LocalizationEngine.Localizator">
             <summary>
             Used to get localization entries
             </summary>
         </member>
-        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.MakeNew">
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.DebuggerEngine">
+            <summary>
+            Gets or sets the language debugger engine
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.CurrentLanguage">
+            <summary>
+            The current language of the application
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Engine.LocalizationEngine.Decoder">
+            <summary>
+            The language decoder to use. By default is Embbeded Decoder
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.MakeNew(MyLanguages.Core.Decoder.ILanguageDecoder)">
             <summary>
             Initialize the <see cref="T:MyLanguages.Core.Engine.LocalizationEngine"/> and returns an unique instance
             </summary>
+            <param name="decoder">The decoder to use. By default, it will use the <see cref="T:MyLanguages.Core.Decoder.EmbbededLanguageDecoder"/></param>
         </member>
         <member name="M:MyLanguages.Core.Engine.LocalizationEngine.DetectLanguages(System.String)">
             <summary>
@@ -98,16 +172,57 @@
             </summary>
             <param name="defaultLanguage">The default language to use. If its null, the system language will be used.</param>
         </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.KeyExists(System.String)">
+            <summary>
+            Returns true if a key exists
+            </summary>
+            <param name="key">The key to check if exists</param>
+        </member>
         <member name="M:MyLanguages.Core.Engine.LocalizationEngine.ChangeLanguage(System.String)">
             <summary>
             Changes the current language of the application
             </summary>
             <param name="languageCode">The new language</param>
         </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.DebuggingLanguageEntry(System.String,System.String)">
+            <summary>
+            Gets an entry from a language for debugging
+            </summary>
+            <param name="key">The key</param>
+            <param name="language">The language</param>
+        </member>
         <member name="M:MyLanguages.Core.Engine.LocalizationEngine.GetInstalledLanguages">
             <summary>
             Returns a readonly list containing all the installed languages
             </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.AddOnlineLanguage(MyLanguages.Core.Localization.Language,System.Globalization.CultureInfo,MyLanguages.Core.OnlineTranslator.IOnlineTranslator)">
+            <summary>
+            Translates a local language to another language
+            </summary>
+            <param name="sourceLanguage">The language to be translated</param>
+            <param name="toLanguage">The language to translate to</param>
+            <param name="translator">The translator to use</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.AddOnlineLanguage(MyLanguages.Core.Localization.Language,System.Globalization.CultureInfo)">
+            <summary>
+            Translates a local language to another language using Google Translation services
+            </summary>
+            <param name="sourceLanguage">The language to be translated</param>
+            <param name="toLanguage">The language to translate to</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.AddOnlineLanguages(MyLanguages.Core.Localization.Language,System.String[])">
+            <summary>
+            Translates a local language to another languages using Google Translation services
+            </summary>
+            <param name="sourceLanguage">The language to be translated</param>
+            <param name="toLanguages">The language to translate to</param>
+        </member>
+        <member name="M:MyLanguages.Core.Engine.LocalizationEngine.GetLanguage(System.String)">
+            <summary>
+            Returns a language based on its code
+            </summary>
+            <param name="code">The code of the language to search</param>
         </member>
         <member name="T:MyLanguages.Core.Engine.Localize">
             <summary>
@@ -120,6 +235,28 @@
             </summary>
             <param name="key">The key to get its value</param>
             <param name="defaultValue">A default value when key is not found</param>
+        </member>
+        <member name="T:MyLanguages.Core.Events.LanguageChangedEventArgs">
+            <summary>
+            Provides the arguments to fire the LanguageChanged event
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Events.LanguageChangedEventArgs.OldLanguage">
+            <summary>
+            The language that changed
+            </summary>
+        </member>
+        <member name="P:MyLanguages.Core.Events.LanguageChangedEventArgs.NewLanguage">
+            <summary>
+            The new language of the application
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Events.LanguageChangedEventArgs.#ctor(MyLanguages.Core.Localization.Language,MyLanguages.Core.Localization.Language)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="oldLanguage">The language that changed</param>
+            <param name="newLanguage">The new language of the application</param>
         </member>
         <member name="T:MyLanguages.Core.Exceptions.LanguageNotFoundException">
             <summary>
@@ -134,12 +271,12 @@
         </member>
         <member name="T:MyLanguages.Core.Extensions.StreamExtensions">
             <summary>
-            Extension methods to work with <see cref="T:System.IO.Stream"/>
+            Extension methods to work with <see cref="T:System.IO.StreamReader"/>
             </summary>
         </member>
-        <member name="M:MyLanguages.Core.Extensions.StreamExtensions.ReadAllLines(System.IO.Stream)">
+        <member name="M:MyLanguages.Core.Extensions.StreamExtensions.ReadAllLines(System.IO.StreamReader)">
             <summary>
-            Reads all lines from a <see cref="T:System.IO.Stream"/>
+            Reads all lines from a <see cref="T:System.IO.StreamReader"/>
             </summary>
             <param name="stream">The stream that contains the lines to read</param>
         </member>
@@ -164,7 +301,7 @@
             For example, in the culture: es-AR, the subculture is AR
             </summary>
         </member>
-        <member name="P:MyLanguages.Core.Localization.Language.ResourceName">
+        <member name="P:MyLanguages.Core.Localization.Language.Location">
             <summary>
             The name of the resource where the language is
             </summary>
@@ -175,12 +312,17 @@
             For example: Español = es
             </summary>
         </member>
+        <member name="P:MyLanguages.Core.Localization.Language.UniqueId">
+            <summary>
+            An id that identifies the language in the current instance
+            </summary>
+        </member>
         <member name="M:MyLanguages.Core.Localization.Language.#ctor(System.String,System.String)">
             <summary>
             Creates a new <see cref="T:MyLanguages.Core.Localization.Language"/>
             </summary>
             <param name="code">The code name of the language</param>
-            <param name="resourceName">The resource location</param>
+            <param name="location">The resource location</param>
         </member>
         <member name="M:MyLanguages.Core.Localization.Language.GetCulture">
             <summary>
@@ -197,21 +339,19 @@
             Provides methods to work with Languages
             </summary>
         </member>
-        <member name="M:MyLanguages.Core.Localization.LanguageManager.LoadFromAssemblyDetection">
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.LoadLanguages(MyLanguages.Core.Decoder.ILanguageDecoder)">
             <summary>
             Searchs language files in embbeded files of the assembly
             </summary>
         </member>
-        <member name="M:MyLanguages.Core.Localization.LanguageManager.AddLanguage(System.String,System.String)">
-            <summary>
-            Adds a new language
-            </summary>
-            <param name="languageCode">The code of the language</param>
-            <param name="resource">The resource name of the language file</param>
-        </member>
         <member name="M:MyLanguages.Core.Localization.LanguageManager.GetCurrentLanguage">
             <summary>
             Returns the current language of the application
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.LoadLanguageEntries(System.String,MyLanguages.Core.Decoder.ILanguageDecoder)">
+            <summary>
+            Loads a language in a reduced environment
             </summary>
         </member>
         <member name="M:MyLanguages.Core.Localization.LanguageManager.GetLanguage(System.String)">
@@ -229,6 +369,12 @@
             Sets the new language
             </summary>
         </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.AddLanguage(MyLanguages.Core.Localization.Language)">
+            <summary>
+            Adds a new language to the system
+            </summary>
+            <param name="language">The language to add</param>
+        </member>
         <member name="M:MyLanguages.Core.Localization.LanguageManager.GetValue(System.String,System.String)">
             <summary>
             Gets a value based on a key
@@ -236,10 +382,41 @@
             <param name="key">The key</param>
             <param name="defaultValue">The default value when key is not found</param>
         </member>
+        <member name="M:MyLanguages.Core.Localization.LanguageManager.EntryExists(System.String)">
+            <summary>
+            Indicates if an entry exists
+            </summary>
+        </member>
         <member name="M:MyLanguages.Core.Localization.LanguageManager.GetLangs">
             <summary>
             Gets all languages
             </summary>
+        </member>
+        <member name="T:MyLanguages.Core.OnlineTranslator.GoogleTranslator">
+            <summary>
+            Uses Google services to translate text
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.OnlineTranslator.GoogleTranslator.TranslateText(System.String,System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Translates a text
+            </summary>
+            <param name="text">The text to translate</param>
+            <param name="from">The source language</param>
+            <param name="to">The language to translate the text</param>
+        </member>
+        <member name="T:MyLanguages.Core.OnlineTranslator.IOnlineTranslator">
+            <summary>
+            Defines a base class to implement an online translator
+            </summary>
+        </member>
+        <member name="M:MyLanguages.Core.OnlineTranslator.IOnlineTranslator.TranslateText(System.String,System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Translates a text
+            </summary>
+            <param name="text">The text to translate</param>
+            <param name="from">The source language</param>
+            <param name="to">The language to translate the text</param>
         </member>
     </members>
 </doc>

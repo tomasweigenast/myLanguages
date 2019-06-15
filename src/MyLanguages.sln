@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{15FC89CE-BD05-4A4E-953C-FAFB9B971067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLanguages.Core", "MyLanguages.Core\MyLanguages.Core.csproj", "{314AB47F-FA3D-4C1D-906C-6D5F1FA18D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLanguages.Core", "MyLanguages.Core\MyLanguages.Core.csproj", "{314AB47F-FA3D-4C1D-906C-6D5F1FA18D93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57A9A352-3D66-478F-A33A-3ED37070A851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "..\tests\TestConsoleApp\TestConsoleApp.csproj", "{EA70B032-A484-44A9-87A8-999549A24900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsoleApp", "..\tests\TestConsoleApp\TestConsoleApp.csproj", "{EA70B032-A484-44A9-87A8-999549A24900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLanguages.Wpf", "MyLanguages.Wpf\MyLanguages.Wpf.csproj", "{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWpfApp", "..\tests\TestWpfApp\TestWpfApp.csproj", "{7D7D57FB-5D43-4591-929D-1A340779A8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,14 @@ Global
 		{EA70B032-A484-44A9-87A8-999549A24900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA70B032-A484-44A9-87A8-999549A24900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA70B032-A484-44A9-87A8-999549A24900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D7D57FB-5D43-4591-929D-1A340779A8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D7D57FB-5D43-4591-929D-1A340779A8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D7D57FB-5D43-4591-929D-1A340779A8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D7D57FB-5D43-4591-929D-1A340779A8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{314AB47F-FA3D-4C1D-906C-6D5F1FA18D93} = {15FC89CE-BD05-4A4E-953C-FAFB9B971067}
 		{EA70B032-A484-44A9-87A8-999549A24900} = {57A9A352-3D66-478F-A33A-3ED37070A851}
+		{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0} = {15FC89CE-BD05-4A4E-953C-FAFB9B971067}
+		{7D7D57FB-5D43-4591-929D-1A340779A8EF} = {57A9A352-3D66-478F-A33A-3ED37070A851}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7262EC8B-4E02-4B99-BD3A-69064137BBAE}

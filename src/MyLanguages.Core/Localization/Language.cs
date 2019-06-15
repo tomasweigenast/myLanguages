@@ -1,5 +1,7 @@
 ﻿using MyLanguages.Core.Exceptions;
+using System;
 using System.Globalization;
+using System.Linq;
 
 namespace MyLanguages.Core.Localization
 {
@@ -37,6 +39,11 @@ namespace MyLanguages.Core.Localization
         /// </summary>
         public bool IsUniversal => string.IsNullOrEmpty(SubCulture);
 
+        /// <summary>
+        /// An id that identifies the language in the current instance
+        /// </summary>
+        public string UniqueId { get; }
+
         #endregion
 
         #region Constructors
@@ -52,8 +59,9 @@ namespace MyLanguages.Core.Localization
             {
                 var culture = CultureInfo.GetCultureInfo(code);
                 Code = code;
-                UniversalCode = culture.Parent.Name;
+                UniversalCode = culture.TwoLetterISOLanguageName;
                 Location = location;
+                UniqueId = Guid.NewGuid().ToString();
 
                 if(culture.Name.Contains("-"))
                     SubCulture = culture.Name.Split('-')[1];
@@ -76,7 +84,31 @@ namespace MyLanguages.Core.Localization
         /// <summary>
         /// Returns the native name of the language
         /// </summary>
-        public override string ToString() => CultureInfo.GetCultureInfo(Code).NativeName;
+        public override string ToString()
+        {
+            var culture = GetCulture();
+            string finalStr = "";
+
+            if (culture.Parent == null || string.IsNullOrWhiteSpace(culture.Parent.Name))
+                finalStr = $"{culture.NativeName.First().ToString().ToUpper()}{string.Join("", culture.NativeName.Skip(1))} ({culture.DisplayName})";
+            else
+            {
+                // Nativename culture
+                string[] nativeAlfabetization = culture.NativeName.Split('(');
+                string originalName = nativeAlfabetization[0];
+                string subCulture = nativeAlfabetization[1].Replace("(", "").Replace(")", "");
+
+                // Displayname alfabetization
+                string[] displayAlfabetization = culture.DisplayName.Split('(');
+                string displayName = displayAlfabetization[0];
+                string displayNameSubCulture = displayAlfabetization[1].Replace("(", "").Replace(")", "");
+
+                finalStr = $"{originalName.First().ToString().ToUpper()}{string.Join("", originalName.Skip(1))}- {subCulture} ({displayName}- {displayNameSubCulture})";
+
+            }
+
+            return finalStr;
+        }
 
         #endregion
     }
