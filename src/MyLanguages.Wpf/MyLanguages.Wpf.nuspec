@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Tomi-15/myLanguages/master/LICENSE.txt</licenseUrl>
+    <repository type="git" url="https://github.com/Tomi-15/myLanguages" />
+    <iconUrl>https://raw.githubusercontent.com/Tomi-15/myLanguages/master/resources/icon.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>localization csharp netstandard cross-platform globalization multilanguage multilingual</tags>
+	
+	<dependencies>
+		<dependency id="MyLanguages.Core" version="1.0.1" />
+	</dependencies>
+	
+  </metadata>
+</package>

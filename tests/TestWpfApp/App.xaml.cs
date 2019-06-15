@@ -12,14 +12,14 @@ namespace TestWpfApp
     /// </summary>
     public partial class App : Application
     {
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             // Make a new localization engine
             LocalizationEngine.MakeNew(new PhysicalFileDecoder(Path.Combine(Directory.GetCurrentDirectory(), "langs")));
             int foundLangs = LocalizationEngine.Instance.DetectLanguages(); // Detect the languages
-            await LocalizationEngine.Instance.AddOnlineLanguage(LocalizationEngine.Instance.GetLanguage("en-US"), CultureInfo.GetCultureInfo("de"));
+            LocalizationEngine.Instance.AddOnlineLanguage(LocalizationEngine.Instance.GetLanguage("en-US"), CultureInfo.GetCultureInfo("de"));
 
             Console.WriteLine($"Loaded languages: {foundLangs} [{string.Join(",", LocalizationEngine.Instance.GetInstalledLanguages())}]");
         }

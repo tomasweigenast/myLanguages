@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Tomas Wegenast</Authors>
     <Product>myLanguages</Product>
     <Description>Cross-platform library that converts your single-language projects into multi-language projects</Description>
@@ -13,6 +13,8 @@
     <PackageProjectUrl>https://github.com/Tomi-15/myLanguages</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Tomi-15/myLanguages</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
+    <PackageIconUrl>https://raw.githubusercontent.com/Tomi-15/myLanguages/master/resources/icon.png</PackageIconUrl>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
