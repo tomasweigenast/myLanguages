@@ -35,7 +35,6 @@
     <!-- <Reference Include="MyLanguages.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL"> -->
       <!-- <HintPath>..\packages\MyLanguages.Core.1.0.1\lib\netstandard2.0\MyLanguages.Core.dll</HintPath> -->
     <!-- </Reference> -->
-	<PackageReference Include="MyLanguages.Core" Version="1.0.1" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -48,6 +47,11 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+	<PackageReference Include="MyLanguages.Core">
+		<Version>1.0.1</Version>
+	</PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Translator\Translation.cs" />
