@@ -1,5 +1,4 @@
 ﻿using MyLanguages.Core.Engine;
-using MyLanguages.Wpf.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
