@@ -46,7 +46,7 @@ There is already two built-in language decoders you can use:
 - `EmbbededLanguageDecoder` *Will search for files with the .lang extension in the embedded files of your application.*
 - `EmbbededLanguageDecoder(string)` *Will search for files with the .lang extension in the directory that you specified in the parameter*
 
->You can create your own decoder by implementing the `ILanguageDecoder` interface in your class.
+**NOTE:** *You can create your own decoder by implementing the `ILanguageDecoder` interface in your class.*
 
 This method will return you the unique instance of the Localization Engine. Or, you can use `LocalizationEngine.Instance` to get it from anywhere.
 
