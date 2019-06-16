@@ -22,8 +22,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>..\..\builds\core\netstandard2.0\MyLanguages.Core.xml</DocumentationFile>
-    <OutputPath>..\..\builds\core</OutputPath>
+    <DocumentationFile>..\..\..\builds\core\netstandard2.0\MyLanguages.Core.xml</DocumentationFile>
+    <OutputPath>..\..\..\builds\core</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
