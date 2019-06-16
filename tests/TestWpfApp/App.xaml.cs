@@ -17,7 +17,7 @@ namespace TestWpfApp
             base.OnStartup(e);
 
             // Make a new localization engine
-            LocalizationEngine.MakeNew(new PhysicalFileDecoder(Path.Combine(Directory.GetCurrentDirectory(), "langs")));
+            var m = LocalizationEngine.MakeNew(new PhysicalFileDecoder(Path.Combine(Directory.GetCurrentDirectory(), "langs")));
             int foundLangs = LocalizationEngine.Instance.DetectLanguages(); // Detect the languages
             LocalizationEngine.Instance.AddOnlineLanguage(LocalizationEngine.Instance.GetLanguage("en-US"), CultureInfo.GetCultureInfo("de"));
 
