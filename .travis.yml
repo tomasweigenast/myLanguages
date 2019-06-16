@@ -1,9 +1,3 @@
 language: csharp
 script: build.bat
 solution: src/MyLanguages.sln
-#mono:
-#  - latest
-#script: 
-#  - cd src
-#  - dotnet restore MyLanguages.sln
-#  - dotnet build MyLanguages.sln
