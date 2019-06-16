@@ -23,8 +23,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\Bitture\Software\Repositories\myLanguages\builds\core\netstandard2.0\MyLanguages.Core.xml</DocumentationFile>
-    <OutputPath>E:\Bitture\Software\Repositories\myLanguages\builds\core</OutputPath>
+    <DocumentationFile>..\..\builds\core\netstandard2.0\MyLanguages.Core.xml</DocumentationFile>
+    <OutputPath>..\..\builds\core</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
