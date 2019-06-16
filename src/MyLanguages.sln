@@ -7,13 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{15FC89CE-BD0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLanguages.Core", "MyLanguages.Core\MyLanguages.Core.csproj", "{314AB47F-FA3D-4C1D-906C-6D5F1FA18D93}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57A9A352-3D66-478F-A33A-3ED37070A851}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsoleApp", "..\tests\TestConsoleApp\TestConsoleApp.csproj", "{EA70B032-A484-44A9-87A8-999549A24900}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLanguages.Wpf", "MyLanguages.Wpf\MyLanguages.Wpf.csproj", "{F7DE1BD0-8A85-4517-A1BD-BF8BDDE5D0C0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWpfApp", "..\tests\TestWpfApp\TestWpfApp.csproj", "{7D7D57FB-5D43-4591-929D-1A340779A8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
