@@ -64,8 +64,5 @@
     <Compile Include="Translator\ITranslatable.cs" />
     <Compile Include="Translator\LocalizationEngineExtensions.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
