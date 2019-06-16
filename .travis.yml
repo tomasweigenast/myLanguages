@@ -1,10 +1,9 @@
 language: csharp
-sudo: required
-dotnet: 2.0.0
+script: build.bat
 solution: src/MyLanguages.sln
-mono:
-  - latest
-script: 
-  - cd src
-  - dotnet restore MyLanguages.sln
-  - dotnet build MyLanguages.sln
+#mono:
+#  - latest
+#script: 
+#  - cd src
+#  - dotnet restore MyLanguages.sln
+#  - dotnet build MyLanguages.sln
