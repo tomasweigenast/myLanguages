@@ -5,10 +5,10 @@ applications and share them across the world!
 
 > It's cross-platform so you can use it in Xamarin, .NET Core, MVC, Mono and .NET Framework projects
 
-[![Build Status](https://img.shields.io/travis/Tomi-15/cfgConfig.svg?style=for-the-badge)](https://travis-ci.com/Tomi-15/cfgConfig)
+[![Build Status](https://img.shields.io/appveyor/ci/bitturesoftware/myLanguages.svg?style=for-the-badge)](https://ci.appveyor.com/project/bitturesoftware/mylanguages)
 [![License](https://img.shields.io/badge/license-GNU%20GPLv3-blue.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/blob/master/LICENSE.txt)
-[![OpenIssues](https://img.shields.io/github/issues-raw/Tomi-15/cfgConfig.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/issues)
-[![Discord](https://img.shields.io/badge/Discord-Tomas%238453-orange.svg?style=for-the-badge&logo=discord)]
+[![OpenIssues](https://img.shields.io/github/issues-raw/Tomi-15/myLanguages.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/issues)
+![Discord](https://img.shields.io/badge/Discord-Tomas%238453-orange.svg?style=for-the-badge&logo=discord)
 
 
 ## Features
@@ -94,8 +94,7 @@ You can use the `AddOnlineLanguage(Language, CultureInfo)` method to add languag
  `toLanguage` **CultureInfo**
  > The language to translate to
 
-<img style="vertical-align: middle;" src="https://raw.githubusercontent.com/Tomi-15/my-repo-icons/master/information-icon-48px.png">
-This will read the input language file, get all the entries and translate it using an Online service
+**NOTE:** *This will read the input language file, get all the entries and translate it using an Online service*
 
 This method has two overloads:
 - `AddOnlineLanguage(Language, CultureInfo, IOnlineTranslator)` *Which takes as parameters the language to be translated, the language to translate to, and the service to use.*
