@@ -32,9 +32,7 @@
     <DocumentationFile>..\..\builds\wpf\bin\MyLanguages.Wpf.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyLanguages.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MyLanguages.Core.1.0.1\lib\netstandard2.0\MyLanguages.Core.dll</HintPath>
-    </Reference>
+	<Reference Include="MyLanguages.Core" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
