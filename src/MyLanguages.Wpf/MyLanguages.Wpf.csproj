@@ -19,7 +19,7 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-	<RuntimeIdentifiers>win</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- <Reference Include="MyLanguages.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL"> -->
-      <!-- <HintPath>..\packages\MyLanguages.Core.1.0.1\lib\netstandard2.0\MyLanguages.Core.dll</HintPath> -->
+    <!-- <HintPath>..\packages\MyLanguages.Core.1.0.1\lib\netstandard2.0\MyLanguages.Core.dll</HintPath> -->
     <!-- </Reference> -->
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -50,9 +50,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-	<PackageReference Include="MyLanguages.Core">
-		<Version>1.0.1</Version>
-	</PackageReference>
+    <PackageReference Include="MyLanguages.Core">
+      <Version>1.0.5</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Translator\Translation.cs" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
@@ -16,8 +16,12 @@
     <tags>localization csharp netstandard cross-platform globalization multilanguage multilingual</tags>
 	
 	<dependencies>
-		<dependency id="MyLanguages.Core" version="1.0.1" />
+		<dependency id="MyLanguages.Core" version="1.0.5" />
 	</dependencies>
 	
   </metadata>
+  <files>
+	<file src="..\..\builds\wpf\bin\MyLanguages.Wpf.dll" target="lib\net47\MyLanguages.Wpf.dll" />
+	<file src="..\..\builds\wpf\bin\MyLanguages.Wpf.xml" target="lib\net47\MyLanguages.Wpf.xml" />
+  </files>
 </package>
