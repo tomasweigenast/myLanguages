@@ -13,7 +13,7 @@
                 Name="hola_ke_tal"
                 />
 
-        <Button Content="{Loc Titles.Principal}"
+        <Button Content="{Loc KeySource={Binding myKey}, FallbackValue=Test}"
                 Height="60"
                 Click="Button_Click"
                 />

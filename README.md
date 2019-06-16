@@ -42,7 +42,7 @@ To instantiate it, you will use the ```LocalizationEngine``` class and the ```Ma
  `decoder` **ILanguageDecoder**
 >The decoder used to load languages
 
-There is already two built-in language decoders you can use:
+There are already two built-in language decoders you can use:
 - `EmbbededLanguageDecoder` *Will search for files with the .lang extension in the embedded files of your application.*
 - `EmbbededLanguageDecoder(string)` *Will search for files with the .lang extension in the directory that you specified in the parameter*
 
@@ -55,7 +55,7 @@ var instance = LocalizationEngine.MakeNew(new PhysicalFileDecoder("InstallationP
 ```
 ### Languages
 
-#### Defining a language
+#### **Defining a language**
 ---
 A language is simply a file which its name is the language name and the extension MUST be **.lang**.
 Entries are defined one per line, the first value is the key, the second is the text between quotes that the key represents.
@@ -72,7 +72,7 @@ Pages.AboutUs.MadeBy="This library was made by:"
 Pages.AboutUs.SupportUs="You can help us by donating in our Patreon page:"
 ```
 
-#### Loading languages
+#### **Loading languages**
 ---
 
 To start searching and loading all the found languages, you will use the `DetectLanguages(string)` method, which takes an optional parameter:
@@ -84,7 +84,7 @@ To start searching and loading all the found languages, you will use the `Detect
 int loadedLangs = LocalizationEngine.Instance.DetectLanguages();
 ```
 
-#### Adding new languages automatically
+#### **Adding new languages automatically**
 ---
 You can use the `AddOnlineLanguage(Language, CultureInfo)` method to add languages based on the input language which take two parameters:
 
@@ -94,113 +94,94 @@ You can use the `AddOnlineLanguage(Language, CultureInfo)` method to add languag
  `toLanguage` **CultureInfo**
  > The language to translate to
 
-**NOTE:** *This will read the input language file, get all the entries and translate it using an Online service*
-
 This method has two overloads:
 - `AddOnlineLanguage(Language, CultureInfo, IOnlineTranslator)` *Which takes as parameters the language to be translated, the language to translate to, and the service to use.*
 - `AddOnlineLanguages(Language, string[])` *Which takes as parameters the language to be translated, and an array of strings containing the languages to translate*
 
+**NOTE:** *This method reads the input language file, get all the entries and translate them using an Online service*
+
 > Translator services can be created by implementing the interface `IOnlineTranslator`
 
-### **Creating and implementing configurations**
+There is already one built-in online translator service:
+- `GoogleTranslator` *Uses the Google Translation services to translate your entries*
 
-#### Configure a class
+#### **Changing the Language**
 ---
-First or all, you need to mark a class to act as a Configuration, and you do that by adding the `Config` attribute to the class:
-```csharp
-[Config]
-public class Settings1
-{
-    public bool DarkModeEnabled { get; set; }
+You can change the current language of your application **at runtime** using the `ChangeLanguage(string)` method, which takes one parameter:
 
-    public string Username { get; set; }
-
-    public int MaxLoginAttemps { get; set; } = 5;
-}
-```
-Optionally, you can define a custom name for the class by adding the `Name` property to the attribute:
-```[Config(Name = "UserSettings")]```
-> If it's not specified, the name of the class will be used as the name of the Configuration
-
-#### Implementing the configuration
----
-Once you have configured the class that will act as Configuration, you are ready to implement it by calling the `Implement<T>()` method, from the `Implementations` property found in the `ConfigurationManager` class:
-```csharp
-myManager.Implementations.Implement<Settings1>();
-```
-> You can use the non-generic method if you want: ```Implement(Type)``` which takes the type of your Configuration class
-
-### **Using the configurations**
-
-#### Get a configuration
----
-To get a Configuration, you have to call the method `GetConfig<T>` from the `ConfigurationManager` class:
-```csharp
-var settings1 = myManager.GetConfig<Settings1>();
-```
-It will throw an `ConfigNotFoundException` if the Configuration is invalid or is not implemented.
-> You can use the non-generic method if you want: `GetConfig(Type)` which takes the type of your Configuration class
-
-#### Saving configurations
----
-When you make a change in your Configuration class, you can wait for the auto save (if its configured), wait until the application gets closed, or you can save it by calling the extension method `SaveConfig<TConfig>(TConfig)` which takes one parameter:
-
- `config` **TConfig**
->The Configuration class that is going to be saved
+ `languageCode` **string**
+ > The new language to set the application
 
 ```csharp
-config.SaveConfig();
+LocalizationEngine.Instance.ChangeLanguage("en-US");
 ```
-It will throw an `ConfigNotFoundException` if the Configuration is invalid or is not implemented.
+This method will try to change your application's language to the specified in the parameter. If you specify a Subculture (en-**US**), first of all, this language will be searched. If it was not found, the Engine will take the Culture (**en**-US) and search for a language that contains it. If everything fails, an exception will be thrown.
+
+#### **Retrieving an entry**
+---
+To get an entry, you only need the key of the entry and use the indexer property `Localizator`
+
+```csharp
+string translatedValue = LocalizationEngine.Localizator["Titles.Principal"];
+```
+
+### WPF implementation
+If you are working in a WPF project, you can install the WPF implementation package and work easily.
+
+You don't need any **xmlns** reference. To locate an entry you will use the `Loc(Key)` markup extension.
+
+```xml
+<Button Content="{Loc Key=Titles.Welcome}" />
+
+<TextBlock Text="{Loc Texts.TextBlock}" />
+
+<TextBox Text="{Loc KeySource={Binding myKey}" />
+```
+
+If you want to show a default text if the key is not found or something fails, you can use the `FallbackValue` property
+```xml
+<TextBlock Text="{Loc NotFound.Key, FallbackValue=My default value}" />
+```
+
+### Useful Methods & Properties
+
+To get all the installed languages:
+```csharp
+IEnumerable<Language> installedLangs = LocalizationEngine.Instance.GetInstalledLanguages();
+```
+
+Gets the current language of the application:
+```csharp
+Language currentLang = LocalizationEngine.Instance.CurrentLanguage;
+```
+
+To get a language:
+```csharp
+Language esLang = LocalizationEngine.Instance.GetLanguage("es");
+```
 
 ### **Summary**
 ```csharp
 // Console app's entry point
 static void Main(string[] args)
 {
-    ConfigurationManager.UseConsole();
+    // Setup the Localization Engine
+    LocalizationEngine.MakeNew("AppData\\MyApp\\langs");
 
-    // Create the manager
-    var manager = ConfigurableManager.Make("AppData\\Roaming\\MyApp\\Settings", "myManager")
-                                        .Configure(settings => // Configure manager
-                                        {
-                                            settings
-                                                .WithAutoSaveEach(TimeSpan.FromMinutes(30))
-                                                .WithSaveMode(SaveModes.Json);
+    // Detect languages and set by default French
+    LocalizationEngine.Instance.DetectLanguages("fr");
 
-                                        }).Build(); // Build it
+    // Print installed langs
+    Console.WriteLine("Installed languages:");
+            foreach (var lang in LocalizationEngine.Instance.GetInstalledLanguages())
+                Console.WriteLine($"\t- {lang.ToString()}");
 
-    // Implement a configuration of type MySettings
-    manager.Implementations.Implement<MySettings>();
+    // Print welcome message
+    Console.WriteLine(LocalizationEngine.Localizator["Texts.Welcome"]);
 
-    // Get the configuration
-    var config = manager.GetConfig<MySettings>();
-
-    // Print some values
-    Console.WriteLine($"{config.DarkModeEnabled} : {config.Username}");
-
-    // Wait until user input
     Console.ReadLine();
-
-    // Terminate the session
-    ConfigurationManager.Terminate();
 }
 ```
-
-### Using the Backup system
----
-If you didn't enabled while configuring the manager, enable it by calling the `ConfigureBackups()` method.
-> More information above
-
-When you enable backups, at the time the application gets closed, and all configurations are saved, backups of them are made, encrypted and saved in a directory called Backups, located at the working path of the Configuration Manager specified.
-
-If something happens to your configuration files, you can have to call **ONE TIME** the method `RestoreLastBackup()` from the `ConfigurationManager` instance after implementing your configurations.
-
-```csharp
-myManager.RestoreLastBackup();
-```
-
-After restoring, you have to eliminate that line from your program's code.
 
 ## License
 Licensed under **GNU General Public License v3.0**

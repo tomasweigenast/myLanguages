@@ -95,17 +95,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MyLanguages.Core\MyLanguages.Core.csproj">
-      <Project>{314ab47f-fa3d-4c1d-906c-6d5f1fa18d93}</Project>
-      <Name>MyLanguages.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\MyLanguages.Wpf\MyLanguages.Wpf.csproj">
-      <Project>{f7de1bd0-8a85-4517-a1bd-bf8bdde5d0c0}</Project>
-      <Name>MyLanguages.Wpf</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <PackageReference Include="MyLanguages.Core">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MyLanguages.Wpf">
+      <Version>1.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

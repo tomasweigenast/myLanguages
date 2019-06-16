@@ -31,6 +31,8 @@ namespace TestConsoleApp
 
             Console.WriteLine($"Current language: {LocalizationEngine.Instance.CurrentLanguage.ToString()}");
 
+            LocalizationEngine.Instance.ChangeLanguage("");
+
             string value = LocalizationEngine.Localizator["Titles.Principal"];
             Console.WriteLine($"A value: {value}");
 
