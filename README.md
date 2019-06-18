@@ -10,6 +10,9 @@ applications and share them across the world!
 [![OpenIssues](https://img.shields.io/github/issues-raw/Tomi-15/myLanguages.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/issues)
 ![Discord](https://img.shields.io/badge/Discord-Tomas%238453-orange.svg?style=for-the-badge&logo=discord)
 
+[![BugReport](https://img.shields.io/badge/contribute-BUG%20REPORT-red.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/issues/new?assignees=&labels=&template=bug_report.md&title=)
+[![FeatureRequest](https://img.shields.io/badge/contribute-feature%20request-red.svg?style=for-the-badge)](https://github.com/Tomi-15/myLanguages/issues/new?assignees=&labels=&template=feature_request.md&title=)
+
 
 ## Features
 - Easy to use
